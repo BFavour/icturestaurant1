@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{%block content%}
+
+    <h1 class="text-center">Our  Menu</h1>
+    {% for menu in menus %}
+    <h2>{{ menu.nom }}</h2>
+    
+    <div class="row" >
+   
+            {% for plat in menu.plats.all %}
+              <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                     <img class="card-img-top" src="{{ plat.image.url }}" alt="">
+                        <div class="card-body">
+                    
+                            <h5 class="card-title">{{plat.nom}}  </h5>
+                            <p class="price">{{plat.prix}}fcfa</p>
+                            <p class="card-text">{{plat.description}}</p>
+                            <a href="{% url 'commande' plat.id %}" class="btn btn-primary">Order now</a>
+                        </div>
+                </div>
+              </div>
+            {% endfor %}
+    </div>
+    {% endfor %}
+    </div>
+    
+      <a href="{% url 'home'%}" style=" display: inline-block;
+      margin-left: 150px;
+      margin-top: 4px;
+      margin-bottom: 20px;
+      align-self: right;
+      color: white;
+      background-color: orange;
+      padding: 1rem;
+      border-radius: 0.5rem;">retun in  the home page</a>
+    
+{%endblock%}
